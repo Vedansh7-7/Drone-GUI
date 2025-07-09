@@ -4,7 +4,6 @@ from ttkbootstrap.constants import *
 
 # --- Functions ---
 def show_message():
-    """Prints a message to the console when the button is clicked."""
     user = entry.get()
     print("Hello,", user, "!")
 
