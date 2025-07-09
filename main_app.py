@@ -271,7 +271,13 @@ def build_main_ui(parent_app, staff_name):
     ttk.Separator(right_panel).pack(fill="x", padx=10, pady=10)
 
     ttk.Label(right_panel, text="System Alerts", font=("Helvetica", 12, "bold"), bootstyle="info").pack(pady=(10, 5))
-    listbox_bg_color = parent_app.style.lookup('TFrame', 'background', bootstyle="secondary")
+    # Corrected way to get the background color for a 'secondary' styled TFrame
+    listbox_bg_color = parent_app.style.lookup("secondary.TFrame", "background")
+
+    # Add a fallback in case the lookup returns None or is problematic (e.g., if theme data is incomplete)
+    # A dark gray often works well with the "superhero" theme's dark backgrounds
+    if not listbox_bg_color:
+        listbox_bg_color = "#2D323E" # A default dark gray color
 
     alerts_listbox = tk.Listbox(right_panel, height=10, borderwidth=0, highlightthickness=0,
                                 bg=listbox_bg_color, # Use the looked-up color here
