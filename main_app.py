@@ -217,14 +217,14 @@ def build_main_ui(parent_app, staff_name):
     #
     # If you want to test with online maps temporarily, uncomment the line below
     # and comment out the set_tile_server line.
-    # map_widget.set_tile_server("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png") # Online OSM
+    map_widget.set_tile_server("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png") # Online OSM
 
     # For offline use, point to your local tile directory:
     # Make sure this path exists and contains your downloaded tiles.
     # Example dummy path - YOU MUST CHANGE THIS TO YOUR ACTUAL TILE PATH
     # The map will appear blank if tiles are not found at this path.
-    offline_tile_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "map_tiles", "{z}", "{x}", "{y}.png")
-    map_widget.set_tile_server(offline_tile_path)
+    # offline_tile_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "map_tiles", "{z}", "{x}", "{y}.png")
+    # map_widget.set_tile_server(offline_tile_path)
 
 
     # Set initial position for testing (e.g., a city in India)
@@ -271,9 +271,12 @@ def build_main_ui(parent_app, staff_name):
     ttk.Separator(right_panel).pack(fill="x", padx=10, pady=10)
 
     ttk.Label(right_panel, text="System Alerts", font=("Helvetica", 12, "bold"), bootstyle="info").pack(pady=(10, 5))
+    listbox_bg_color = parent_app.style.lookup('TFrame', 'background', bootstyle="secondary")
+
     alerts_listbox = tk.Listbox(right_panel, height=10, borderwidth=0, highlightthickness=0,
-                                bg=right_panel.cget('background'), fg='white',
-                                font=("Helvetica", 9), selectbackground=app.style.colors.primary,
+                                bg=listbox_bg_color, # Use the looked-up color here
+                                fg='white', # Keep foreground white for contrast on dark background
+                                font=("Helvetica", 9), selectbackground=parent_app.style.colors.primary,
                                 selectforeground='white')
     alerts_listbox.pack(fill="both", expand=True, padx=10, pady=5)
     # Add a scrollbar to the listbox
