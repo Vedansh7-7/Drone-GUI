@@ -20,7 +20,7 @@ if not signUp:
     FrameSign = ttk.Frame(app)
     FrameSign.place()
     FrLoad = ttk.Frame(app)
-    if not Logged:
+    if not Logged: # Default Sign-in page
         # A label to display text
         label = ttk.Label(FrameSign, text="Welcome to Narad!\n", font=("Helvetica", 16))
         label.grid(row=0,column=2 ,pady=20, padx=35)
@@ -35,14 +35,16 @@ if not signUp:
         button = ttk.Button(FrameSign, text="Click Me", command=show_message, bootstyle="success-outline")
         button.grid(row=3, column=2, pady=10, padx=10)
 
-        button = ttk.Button(FrameSign, text="Sign-Up", command=print("Logging in done"), bootstyle="light-outline")
+        button = ttk.Button(FrameSign, text="Sign-Up", command=lambda: globals().__setitem__('Logged', True), bootstyle="light-outline")
         button.grid(row=3, column=3, pady=20, padx=10)
     else:
         FrLoad.place()
         # A progress bar
-        progress = ttk.Progressbar(FrLoad, bootstyle="striped, success", maximum=100)
+        progress = ttk.Progressbar(FrLoad, bootstyle="success-animated", maximum=100)
         progress.pack(pady=20, padx=20, fill="BOTH")
-        progress.start() # Animate the progress bar
+        progress.start(1000) # Animate the progress bar
+        progress.stop()
+        FrLoad.destroy()
 
 # --- Start the application ---
 app.mainloop()
