@@ -3,5 +3,10 @@
         "name": "SitaRam",
         "staff_id": "MAEX123",
         "contact_number": "9664070168"
+    },
+    {
+        "name": "Gulshan",
+        "staff_id": "GUL123",
+        "contact_number": "9257489180"
     }
 ]
