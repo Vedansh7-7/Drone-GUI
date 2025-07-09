@@ -41,10 +41,10 @@ def save_staff_data(data):
 
 def show_main_ui():
     """
-    Destroys login/loading frames and prepares for the main application UI.
-    This function will be expanded in the next step to build the main UI.
+    Destroys login/loading frames and transitions to the main application UI
+    defined in main_app.py.
     """
-    global Logged
+    global Logged, Staff_Name
 
     # Stop the progress bar before destroying the frame
     progress.stop()
@@ -56,12 +56,8 @@ def show_main_ui():
 
     # --- Placeholder for Main UI ---
     print(f"Logged in successfully as {Staff_Name}! Transitioning to Main UI.")
-    main_ui_frame = ttk.Frame(app)
-    main_ui_frame.pack(fill="both", expand=True)
-    ttk.Label(main_ui_frame, text=f"Welcome, {Staff_Name}! This is the Main Drone Control UI.", font=("Helvetica", 20)).pack(pady=50)
-    ttk.Label(main_ui_frame, text="Ready to integrate the map and controls!").pack()
-    # In the next prompt, we will replace this placeholder with the actual detailed UI.
-
+    # --- Call the function from main_app.py to build the main UI ---
+    main_app.build_main_ui(app, Staff_Name)
 
 def start_loading_animation():
     """
